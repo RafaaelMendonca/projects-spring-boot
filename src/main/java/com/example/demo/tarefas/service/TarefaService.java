@@ -2,10 +2,12 @@ package com.example.demo.tarefas.service;
 
 import com.example.demo.tarefas.model.Tarefas;
 import com.example.demo.tarefas.repository.TarefaRepository;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Service
 public class TarefaService {
     private final TarefaRepository tarefaRepository;
 
