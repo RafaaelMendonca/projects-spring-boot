@@ -15,7 +15,7 @@ public class TarefaService {
         this.tarefaRepository = tarefaRepository;
     }
 
-    public void salvarTarefa(Tarefas tarefas){
+    public void adicionarTarefa(Tarefas tarefas){
         if(tarefas.getDataTarefa().isBefore(LocalDate.now())){
             throw new IllegalArgumentException("A data da tarefa não pode ser no passado");
         }
