@@ -4,7 +4,6 @@ import com.example.demo.tarefas.model.Tarefas;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,8 +15,8 @@ public class TarefaRepository {
         tarefaList = new ArrayList<>();
     }
 
-    public boolean salvarTarefa(Tarefas tarefas){
-        return tarefaList.add(tarefas);
+    public void salvarTarefa(Tarefas tarefas){
+        tarefaList.add(tarefas);
     }
 
     public List<Tarefas> listarTarefas(){
@@ -28,20 +27,16 @@ public class TarefaRepository {
         return Collections.unmodifiableList(tarefaList);
     }
 
-    public boolean removerTarefas(int index){
-        if(index < 0 || index >= tarefaList.size()){
-            return false;
-        }
-        tarefaList.remove(index);
-        return true;
+    public void removerTarefas(String nomeTarefa){
+        /*
+            forma mais recomendada (a principio) para se buscar o nome e remover a tarefa
+         */
+        tarefaList.removeIf(tarefas -> tarefas.getNomeTarefa().equalsIgnoreCase(nomeTarefa));
     }
 
-    public boolean editarTarefas(int index, Tarefas tarefas){
-        if(index < 0 || index >= tarefaList.size()){
-            return false;
-        }
-        tarefaList.set(index, tarefas);
-        return true;
+    public void editarTarefas(String nomeTarefa, Tarefas novaTarefa){
+        removerTarefas(nomeTarefa);
+        salvarTarefa(novaTarefa);
     }
 
     public Tarefas buscarPorIndice(int index){
